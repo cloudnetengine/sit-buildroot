@@ -1,0 +1,12 @@
+#!/bin/sh
+
+patch etc/proftpd.conf <<"_EOF"
+14c14
+< UseIPv6				off
+---
+> UseIPv6				on
+30c30
+< Group				nogroup
+---
+> Group				nobody
+_EOF

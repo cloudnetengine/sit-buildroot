@@ -1,0 +1,12 @@
+#!/bin/sh
+
+patch etc/init.d/S80tftpd-hpa <<"_EOF"
+3c3,4
+< OPTIONS="-c -l -s /var/lib/tftpboot"
+---
+> # Using tmpfs which has more free space than rootfs
+> OPTIONS="-c -l -s /tmp"
+18,19d18
+< 	mkdir -p /var/lib/tftpboot
+< 	chmod 1777 /var/lib/tftpboot
+_EOF

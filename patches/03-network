@@ -1,0 +1,19 @@
+#!/bin/sh
+
+patch etc/init.d/S40network <<"_EOF"
+11a12,23
+>         # Rename interfaces. The 1st interface is for managment.
+>         virtio_idx=0
+>         for dev in /sys/class/net/eth*
+>         do
+>           devname=`basename $dev`
+> 	  if [ "$devname" != "eth0" ]; then
+>             ip link set dev $devname name virtio${virtio_idx}
+>             virtio_idx=$(($virtio_idx+1))
+>           fi
+>         done
+>         echo "1" > /proc/sys/net/ipv4/conf/all/arp_ignore
+>         echo "2" > /proc/sys/net/ipv4/conf/all/arp_announce
+12a25
+> 	rm /etc/resolv.conf
+_EOF

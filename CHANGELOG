@@ -1,0 +1,8 @@
+## [1.0] - 2021-11-01
+
+### First release
+- Basic script to build VM image for CNE-OVS-SIT.
+  This version is based on FD.IO VPP CSIT image builder with some changes:
+  - Upgrade buildroot to version 2021.02.6 with linux kernel 5.10.7.
+  - Including iperf/netperf/curl/ftp/tftp/iptables/tcpdump etc.
+  - Using grub2 bootloader.

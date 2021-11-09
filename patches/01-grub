@@ -1,0 +1,12 @@
+#!/bin/sh
+
+patch boot/grub/grub.cfg <<"_EOF"
+2c2
+< set timeout="5"
+---
+> set timeout="0"
+5c5
+< 	linux /boot/bzImage root=/dev/sda1 rootwait console=tty1
+---
+> 	linux /boot/bzImage root=/dev/sda1 rootwait console=tty1 console=ttyS0
+_EOF
